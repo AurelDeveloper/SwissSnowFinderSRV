@@ -18,10 +18,6 @@ SwissSnowFinderSRV is your ultimate server script for discovering ski stations w
 4. **Devise Snow Identification Algorithm:**
    - Develop a smart algorithm to identify the ski station with the most snow in the user's chosen region, leveraging data from the SQL view.
 
-### Usage Instructions
-
-Follow these steps to set up SwissSnowFinderSRV on your system and start exploring the ski stations with optimal snow conditions in Switzerland. Ensure you have the necessary dependencies installed and configure the server according to your preferences.
-
 ### 🚀 Getting Started
 
 1. **Clone the Repository:**
