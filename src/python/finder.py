@@ -1,42 +1,67 @@
 import sqlite3
 
-conn = sqlite3.connect('meteo.db')
-c = conn.cursor()
+# Verbindung zu den Datenbanken herstellen
+meteo_conn = sqlite3.connect('../../meteo.db')
+meteo_cursor = meteo_conn.cursor()
 
-c.execute("SELECT * FROM cumulative_snowfall")
-snowfall_data = c.fetchall()
+users_conn = sqlite3.connect('../../users.db')
+users_cursor = users_conn.cursor()
 
-c.execute("SELECT * FROM weather")
-weather_data = c.fetchall()
+# Alle Benutzer-IDs aus der Tabelle user_devices abrufen
+users_cursor.execute("SELECT user_id FROM user_devices")
+user_ids = users_cursor.fetchall()
 
-conn.close()
+for user_id in user_ids:
+    user_id = user_id[0]  # fetchall() gibt eine Liste von Tupeln zurück
 
-scores = {}
+    # Benutzerpräferenzen für die aktuelle Benutzer-ID abrufen
+    users_cursor.execute("SELECT region FROM user_preference WHERE user_id = ?", (user_id,))
+    user_preference = users_cursor.fetchone()
 
-for snowfall in snowfall_data:
-    station_name = snowfall[0]
-    snowfall_last_2_days = snowfall[4]
+    if user_preference is not None:
+        user_region = user_preference[0]
 
-    weather = next((w for w in weather_data if w[0] == station_name), None)
-    if weather is None:
-        continue
+        # Alle Skistationen in der bevorzugten Region des Benutzers abrufen
+        meteo_cursor.execute("SELECT id FROM ski_stations WHERE region = ?", (user_region,))
+        station_ids = meteo_cursor.fetchall()
 
-    temperature = weather[1]
-    wind_speed = weather[2]
-    sunshine_duration = weather[3]
-    visibility = weather[6]
-    clouds = weather[7]
+        scores = {}
+        for station_id in station_ids:
+            station_id = station_id[0]  # fetchall() gibt eine Liste von Tupeln zurück
 
-    score = 0
-    score += snowfall_last_2_days * 10 # Snowfall is now the most important factor (10x)
-    score -= (temperature < -5) * 10 * 1.0
-    score -= wind_speed * 0.5
-    score += sunshine_duration * 0.3
-    score += visibility * 0.1
-    score -= clouds * 0.1
+            # Schneedaten für die aktuelle Skistation abrufen
+            meteo_cursor.execute("""
+                SELECT snowfall_last_12_hours, snowfall_last_day, snowfall_last_2_days, snowfall_last_3_days,
+                       snowfall_last_4_days, snowfall_last_5_days, snowfall_last_6_days, snowfall_last_7_days
+                FROM cumulative_snowfall
+                WHERE station_id = ?
+            """, (station_id,))
+            snow_data = meteo_cursor.fetchone()
 
-    scores[station_name] = score
+            if snow_data is not None:
+                # Ein Score basierend auf den Schneedaten berechnen
+                score = (
+                        snow_data[0] * 7 +  # Schneefall der letzten 12 Stunden
+                        snow_data[1] * 6 +  # Schneefall des letzten Tages
+                        snow_data[2] * 5 +  # Schneefall der letzten 2 Tage
+                        snow_data[3] * 4 +  # Schneefall der letzten 3 Tage
+                        snow_data[4] * 3 +  # Schneefall der letzten 4 Tage
+                        snow_data[5] * 2 +  # Schneefall der letzten 5 Tage
+                        snow_data[6] * 1 +  # Schneefall der letzten 6 Tage
+                        snow_data[7] * 0.5  # Schneefall der letzten 7 Tage
+                )
+                scores[station_id] = score
 
-best_ski_station = max(scores, key=scores.get)
+        # Die Skistation mit dem höchsten Score finden
+        best_station_id = max(scores, key=scores.get)
 
-print(f"The best ski station is {best_ski_station} with a score of {scores[best_ski_station]}")
+        # Die Benutzer-ID und die ID der besten Skistation in die Tabelle user_recommendation einfügen
+        users_cursor.execute("""
+            INSERT INTO user_recommendation (user_id, station_id)
+            VALUES (?, ?)
+        """, (user_id, best_station_id))
+        users_conn.commit()
+
+# Verbindungen zu den Datenbanken schließen
+meteo_conn.close()
+users_conn.close()
