@@ -1,42 +1,33 @@
 import sqlite3
 
-conn = sqlite3.connect('meteo.db')
+db_path = '../../swisssnow.sqlite'
+
+conn = sqlite3.connect(db_path)
 c = conn.cursor()
 
-c.execute("SELECT * FROM cumulative_snowfall")
-snowfall_data = c.fetchall()
+# Fetch the data from the view
+c.execute("SELECT station_id, region_id, snowfall_last_7_days FROM cumulative_snowfall")
+data = c.fetchall()
 
-c.execute("SELECT * FROM weather")
-weather_data = c.fetchall()
+# Group the data by region and find the station with the most snowfall in the last 7 days in each region
+best_stations = {}
+for row in data:
+    station_id, region_id, snowfall = row
+    if region_id not in best_stations or snowfall > best_stations[region_id][1]:
+        best_stations[region_id] = (station_id, snowfall)
 
+# Insert the best stations into the new table
+for region_id, (station_id, snowfall) in best_stations.items():
+    c.execute("INSERT INTO region_skistation (region_id, station_id, snowfall_last_7_days) VALUES (?, ?, ?)", (region_id, station_id, snowfall))
+
+# Fetch the user's preferred regions from the user_preference table
+user_id = 'user_id'  # Replace 'user_id' with the actual user's id
+c.execute("SELECT region_id FROM user_preference WHERE user_id = ?", (user_id,))
+user_preferences = c.fetchall()
+
+# Print out the preferred regions for the user
+for preference in user_preferences:
+    print(f"User {user_id} has a preference for region {preference[0]}")
+
+conn.commit()
 conn.close()
-
-scores = {}
-
-for snowfall in snowfall_data:
-    station_name = snowfall[0]
-    snowfall_last_2_days = snowfall[4]
-
-    weather = next((w for w in weather_data if w[0] == station_name), None)
-    if weather is None:
-        continue
-
-    temperature = weather[1]
-    wind_speed = weather[2]
-    sunshine_duration = weather[3]
-    visibility = weather[6]
-    clouds = weather[7]
-
-    score = 0
-    score += snowfall_last_2_days * 10 # Snowfall is now the most important factor (10x)
-    score -= (temperature < -5) * 10 * 1.0
-    score -= wind_speed * 0.5
-    score += sunshine_duration * 0.3
-    score += visibility * 0.1
-    score -= clouds * 0.1
-
-    scores[station_name] = score
-
-best_ski_station = max(scores, key=scores.get)
-
-print(f"The best ski station is {best_ski_station} with a score of {scores[best_ski_station]}")
