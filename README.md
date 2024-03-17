@@ -1,3 +1,5 @@
+The project is in progress
+
 ## SwissSnowFinderSRV
 
 SwissSnowFinderSRV is your ultimate server script for discovering ski stations with the best snow conditions in Switzerland.
