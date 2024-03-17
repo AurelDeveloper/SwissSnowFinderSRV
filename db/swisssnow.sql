@@ -30,22 +30,19 @@ CREATE TABLE weather
     FOREIGN KEY (ski_station_id) REFERENCES ski_stations (id)
 );
 
-CREATE TABLE user_devices
+CREATE TABLE user
 (
-    id               INTEGER PRIMARY KEY AUTOINCREMENT,
-    user_id          INTEGER,
-    device_id        TEXT NOT NULL,
-    device_model     TEXT,
-    operating_system TEXT,
-    FOREIGN KEY (user_id) REFERENCES users (id)
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name VARCHAR(255) NOT NULL
 );
 
-CREATE TABLE user_preference
+CREATE TABLE user_preferences
 (
-    id      INTEGER PRIMARY KEY AUTOINCREMENT,
-    user_id INTEGER,
-    region  TEXT,
-    FOREIGN KEY (user_id) REFERENCES users (id)
+    id         INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id    INTEGER,
+    region_id  INTEGER,
+    FOREIGN KEY (user_id) REFERENCES user (id),
+    FOREIGN KEY (region_id) REFERENCES region (id)
 );
 
 CREATE TABLE region_skistation
@@ -63,7 +60,7 @@ CREATE TABLE user_recommendation
     user_id    INTEGER,
     station_id INTEGER,
     date       TIMESTAMP NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES users (id),
+    FOREIGN KEY (user_id) REFERENCES user (id),
     FOREIGN KEY (station_id) REFERENCES ski_stations (id)
 );
 
@@ -74,6 +71,6 @@ CREATE TABLE user_scores
     station_id INTEGER,
     score      REAL,
     date       TIMESTAMP NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES users (id),
+    FOREIGN KEY (user_id) REFERENCES user (id),
     FOREIGN KEY (station_id) REFERENCES ski_stations (id)
 );

@@ -2,7 +2,7 @@ import sqlite3
 import requests
 from datetime import datetime
 
-db_path = '../../swisssnow.sqlite'
+db_path = '../swisssnow.sqlite'
 api_key = '8c5029c0520440cedde7e4884da9ec6d'
 
 conn = sqlite3.connect(db_path)
