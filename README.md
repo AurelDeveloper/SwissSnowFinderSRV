@@ -30,11 +30,6 @@ SwissSnowFinderSRV is your ultimate server script for discovering ski stations w
    cd SwissSnowFinderSRV
    ```
 
-3. **Install Dependencies:**
-   ```bash
-   npm install
-   ```
-
 ### License
 
 This project is licensed under the [GNU General Public License v3.0](LICENSE).
