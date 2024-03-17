@@ -3,12 +3,14 @@ import sqlite3
 import subprocess
 
 SCRIPT_PATHS = {
-    'schema': '../db/swisssnow.sql',
+    'db': '../swisssnow.sqlite',
+    'schema': '../db/schema.sql',
     'insert': './insert.sql',
     'weather': '../src/weather.py',
     'view': '../db/view.sql',
     'finder': '../src/finder.py'
 }
+
 
 def ask_continue(script_name, file_path):
     file_type = os.path.splitext(file_path)[1][1:]
@@ -17,24 +19,25 @@ def ask_continue(script_name, file_path):
         if answer in ['y', 'n']:
             return answer == 'y'
 
+
 def execute_sql_file(db_connection, file_path):
     with open(file_path, 'r') as sql_file:
         sql_script = sql_file.read()
     db_connection.executescript(sql_script)
 
+
 def execute_python_file(file_path):
-    subprocess.check_call(["python", file_path])
+    subprocess.check_call(["python3", file_path])
 
-db_path = 'swisssnow.sqlite'
 
-if os.path.exists(db_path):
-    if ask_continue("database", db_path):
-        os.remove(db_path)
+if os.path.exists(SCRIPT_PATHS['db']):
+    if ask_continue("database", SCRIPT_PATHS['db']):
+        os.remove(SCRIPT_PATHS['db'])
     else:
         print("Script aborted.")
         exit()
 
-conn = sqlite3.connect(db_path)
+conn = sqlite3.connect(SCRIPT_PATHS['db'])
 
 if ask_continue("schema", SCRIPT_PATHS['schema']):
     execute_sql_file(conn, SCRIPT_PATHS['schema'])

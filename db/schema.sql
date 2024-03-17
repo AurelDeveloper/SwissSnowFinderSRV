@@ -1,7 +1,6 @@
-CREATE TABLE region
-(
-    id   INTEGER PRIMARY KEY AUTOINCREMENT,
-    name TEXT NOT NULL UNIQUE
+CREATE TABLE regions (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL
 );
 
 CREATE TABLE ski_stations
@@ -11,7 +10,7 @@ CREATE TABLE ski_stations
     region_id INTEGER NOT NULL,
     latitude  REAL    NOT NULL,
     longitude REAL    NOT NULL,
-    FOREIGN KEY (region_id) REFERENCES region (id)
+    FOREIGN KEY (region_id) REFERENCES regions (id)
 );
 
 CREATE TABLE weather
@@ -30,47 +29,55 @@ CREATE TABLE weather
     FOREIGN KEY (ski_station_id) REFERENCES ski_stations (id)
 );
 
-CREATE TABLE user
+CREATE TABLE users
 (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     name VARCHAR(255) NOT NULL
 );
 
-CREATE TABLE user_preferences
+CREATE TABLE users_preferences
 (
     id         INTEGER PRIMARY KEY AUTOINCREMENT,
     user_id    INTEGER,
     region_id  INTEGER,
-    FOREIGN KEY (user_id) REFERENCES user (id),
-    FOREIGN KEY (region_id) REFERENCES region (id)
+    FOREIGN KEY (user_id) REFERENCES users (id),
+    FOREIGN KEY (region_id) REFERENCES regions (id)
 );
 
-CREATE TABLE region_skistation
+CREATE TABLE regions_skistations
 (
+    id                   INTEGER PRIMARY KEY AUTOINCREMENT,
     region_id            INTEGER NOT NULL,
     station_id           INTEGER NOT NULL,
+    score                REAL,
     snowfall_last_7_days REAL,
-    FOREIGN KEY (region_id) REFERENCES region (id),
+    snowfall_last_6_days REAL,
+    snowfall_last_5_days REAL,
+    snowfall_last_4_days REAL,
+    snowfall_last_3_days REAL,
+    snowfall_last_2_days REAL,
+    snowfall_last_day    REAL,
+    FOREIGN KEY (region_id) REFERENCES regions (id),
     FOREIGN KEY (station_id) REFERENCES ski_stations (id)
 );
 
-CREATE TABLE user_recommendation
+CREATE TABLE users_recommendations
 (
     id         INTEGER PRIMARY KEY AUTOINCREMENT,
     user_id    INTEGER,
     station_id INTEGER,
     date       TIMESTAMP NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES user (id),
+    FOREIGN KEY (user_id) REFERENCES users (id),
     FOREIGN KEY (station_id) REFERENCES ski_stations (id)
 );
 
-CREATE TABLE user_scores
+CREATE TABLE users_scores
 (
     id         INTEGER PRIMARY KEY AUTOINCREMENT,
     user_id    INTEGER,
     station_id INTEGER,
     score      REAL,
     date       TIMESTAMP NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES user (id),
+    FOREIGN KEY (user_id) REFERENCES users (id),
     FOREIGN KEY (station_id) REFERENCES ski_stations (id)
 );
