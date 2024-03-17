@@ -1,3 +1,5 @@
+The project is in progress
+
 ## SwissSnowFinderSRV
 
 SwissSnowFinderSRV is your ultimate server script for discovering ski stations with the best snow conditions in Switzerland.
@@ -28,11 +30,6 @@ SwissSnowFinderSRV is your ultimate server script for discovering ski stations w
 2. **Navigate to the Project Directory:**
    ```bash
    cd SwissSnowFinderSRV
-   ```
-
-3. **Install Dependencies:**
-   ```bash
-   npm install
    ```
 
 ### License
