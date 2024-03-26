@@ -50,6 +50,7 @@ CREATE TABLE regions_skistations
     region_id            INTEGER NOT NULL,
     station_id           INTEGER NOT NULL,
     score                REAL,
+    temperature          REAL,
     snowfall_last_7_days REAL,
     snowfall_last_6_days REAL,
     snowfall_last_5_days REAL,
