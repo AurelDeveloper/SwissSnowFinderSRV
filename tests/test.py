@@ -6,9 +6,9 @@ SCRIPT_PATHS = {
     'db': '../swisssnow.sqlite',
     'schema': '../db/schema.sql',
     'insert': './insert.sql',
-    'weather': '../src/weather.py',
+    'weather': '../src/weathers.py',
     'view': '../db/view.sql',
-    'finder': '../src/finder.py'
+    'finder': '../src/finders.py'
 }
 
 

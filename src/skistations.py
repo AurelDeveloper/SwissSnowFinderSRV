@@ -2,7 +2,7 @@ import requests
 import sqlite3
 import json
 
-def fetch_ski_stations():
+def fetch_skistations():
     overpass_url = "http://overpass-api.de/api/interpreter"
     overpass_query = """
     [out:json];
@@ -33,22 +33,22 @@ def insert_region(conn, region_name):
     else:
         return result[0]
 
-def insert_ski_stations(db_path, ski_stations):
+def insert_skistations(db_path, skistations):
     conn = sqlite3.connect(db_path)
 
-    for station in ski_stations:
+    for station in skistations:
         lat = station['lat']
         lon = station['lon']
         name = station['tags'].get('name', 'Unknown')
         region_name = get_region(lat, lon)
         region_id = insert_region(conn, region_name)
         c = conn.cursor()
-        c.execute("INSERT INTO ski_stations (name, latitude, longitude, region_id) VALUES (?, ?, ?, ?)", (name, lat, lon, region_id))
+        c.execute("INSERT INTO skistations (name, latitude, longitude, region_id) VALUES (?, ?, ?, ?)", (name, lat, lon, region_id))
 
     conn.commit()
     conn.close()
 
 # Use the functions
 db_path = '../swisssnow.sqlite'
-ski_stations = fetch_ski_stations()
-insert_ski_stations(db_path, ski_stations)
+skistations = fetch_skistations()
+insert_skistations(db_path, skistations)

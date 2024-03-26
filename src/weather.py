@@ -8,7 +8,7 @@ api_key = '8c5029c0520440cedde7e4884da9ec6d'
 conn = sqlite3.connect(db_path)
 c = conn.cursor()
 
-c.execute("SELECT id, name, region_id, latitude, longitude FROM ski_stations")
+c.execute("SELECT id, name, region_id, latitude, longitude FROM skistations")
 stations = c.fetchall()
 
 for station in stations:
@@ -27,7 +27,7 @@ for station in stations:
     timestamp = datetime.fromtimestamp(dt).strftime('%Y-%m-%d %H:%M:%S') if dt else None
 
     c.execute("""
-        INSERT INTO weather (ski_station_id, temperature, wind_speed, snow, visibility, dt, clouds, weather_main, weather_description, timestamp)
+        INSERT INTO weathers (ski_station_id, temperature, wind_speed, snow, visibility, dt, clouds, weather_main, weather_description, timestamp)
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     """, (id, data['main']['temp'], data['wind']['speed'], snow, visibility, dt, clouds, weather_main, weather_description, timestamp))
 
