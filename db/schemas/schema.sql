@@ -1,7 +1,7 @@
 -- Old name: regions
 CREATE TABLE regions (
-                         id INTEGER PRIMARY KEY AUTOINCREMENT,
-                         name TEXT NOT NULL
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL
 );
 
 -- Old name: ski_stations
