@@ -1,7 +1,7 @@
 -- Old name: regions
 CREATE TABLE regions (
-                         id INTEGER PRIMARY KEY AUTOINCREMENT,
-                         name TEXT NOT NULL
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL
 );
 
 -- Old name: ski_stations
@@ -19,7 +19,7 @@ CREATE TABLE skistations
 CREATE TABLE weathers
 (
     id                  INTEGER PRIMARY KEY AUTOINCREMENT,
-    ski_station_id      INTEGER   NOT NULL,
+    skistation_id      INTEGER   NOT NULL,
     temperature         DECIMAL(5, 2),
     wind_speed          DECIMAL(5, 2),
     snow                DECIMAL(5, 2),
@@ -29,7 +29,7 @@ CREATE TABLE weathers
     clouds              INTEGER,
     weather_main        TEXT,
     weather_description TEXT,
-    FOREIGN KEY (ski_station_id) REFERENCES skistations (id)
+    FOREIGN KEY (skistation_id) REFERENCES skistations (id)
 );
 
 -- Old name: users
@@ -50,7 +50,7 @@ CREATE TABLE users_preferences
 );
 
 -- New name: skistation_location
-CREATE TABLE skistation_location
+CREATE TABLE skistations_location
 (
     id                   INTEGER PRIMARY KEY AUTOINCREMENT,
     region_id            INTEGER NOT NULL,
