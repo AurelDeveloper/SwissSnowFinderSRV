@@ -79,14 +79,3 @@ CREATE TABLE users_recommendations
     FOREIGN KEY (station_id) REFERENCES skistations (id)
 );
 
--- Old name: users_scores
-CREATE TABLE users_scores
-(
-    id         INTEGER PRIMARY KEY AUTOINCREMENT,
-    user_id    INTEGER,
-    station_id INTEGER,
-    score      REAL,
-    date       TIMESTAMP NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES users (id),
-    FOREIGN KEY (station_id) REFERENCES skistations (id)
-);

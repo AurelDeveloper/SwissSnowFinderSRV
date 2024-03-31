@@ -53,4 +53,4 @@ SELECT
 FROM
     weathers
         JOIN
-    skistations ON weathers.ski_station_id = skistations.id;
+    skistations ON weathers.skistation_id = skistations.id;

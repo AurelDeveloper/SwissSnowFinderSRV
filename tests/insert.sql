@@ -12,7 +12,6 @@ VALUES ('Tschappina', (SELECT id FROM regions WHERE name = 'Grisons'), 46.686360
        ('St. Moritz', (SELECT id FROM regions WHERE name = 'Grisons'), 46.498831907768114, 9.81129686427385),
        ('Verbier', (SELECT id FROM regions WHERE name = 'Wallis'), 46.0996 , 7.2281);
 
-
 INSERT INTO users (name)
 VALUES ('John'), ('Jane'), ('Jack');
 

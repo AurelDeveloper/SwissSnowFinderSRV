@@ -1,24 +1,14 @@
-SELECT *
-FROM users
-         JOIN users_preferences
-              ON users.region_id = users_preferences.region_id
-         JOIN weathers
-              ON users_preferences.skistations_id = weathers.skistation_id
-WHERE weathers.snow > 0.2;
-
+CREATE VIEW user_snowfall AS
 SELECT
-    users.name AS username,
-    skistations.name AS skistation,
-    cumulative_snowfall.snowfall_last_12_hours AS snowfall_last_12_hours,
-    cumulative_snowfall.snowfall_last_day AS snowfall_last_day,
-    cumulative_snowfall.snowfall_last_3_days AS snowfall_last_3_days
+    users.id AS user_id,
+    skistations.id AS skistation_id
 FROM
-    users,
-    users_preferences,
-    skistations,
-    cumulative_snowfall
+    users
+        JOIN users_preferences
+             ON users.id = users_preferences.user_id
+        JOIN skistations
+             ON users_preferences.region_id = skistations.region_id
+        JOIN cumulative_snowfall
+             ON cumulative_snowfall.station_id = skistations.id
 WHERE
-    users.id = users_preferences.user_id
-  AND users_preferences.region_id = skistations.region_id
-  AND cumulative_snowfall.station_id = skistations.id
-  AND cumulative_snowfall.snowfall_last_3_days > 0.2;
+    cumulative_snowfall.snowfall_last_3_days > 0.2;
