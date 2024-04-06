@@ -1,3 +1,4 @@
 apns2-client
 requests
 pandas
+supabase

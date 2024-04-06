@@ -1,18 +1,19 @@
-import sqlite3
+import os
 import requests
+from supabase import create_client, Client
 from datetime import datetime
 
-db_path = '../swisssnow.sqlite'
-api_key = '8c5029c0520440cedde7e4884da9ec6d'
+url: str = os.environ.get("SUPABASE_URL")
+key: str = os.environ.get("SUPABASE_KEY")
+supabase: Client = create_client(url, key)
 
-conn = sqlite3.connect(db_path)
-c = conn.cursor()
+api_key = os.environ['OPENWEATHER_API_KEY']
 
-c.execute("SELECT id, name, region_id, latitude, longitude FROM skistations")
-stations = c.fetchall()
+# Fetch the stations from Supabase using supabase-py
+stations = supabase.table("skistations").select("*").execute()
 
-for station in stations:
-    id, name, region_id, lat, lon = station
+for station in stations['data']:
+    id, name, region_id, lat, lon = station["id"], station["name"], station["region_id"], station["latitude"], station["longitude"]
 
     response = requests.get(f'https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={api_key}')
     data = response.json()
@@ -26,10 +27,15 @@ for station in stations:
 
     timestamp = datetime.fromtimestamp(dt).strftime('%Y-%m-%d %H:%M:%S') if dt else None
 
-    c.execute("""
-        INSERT INTO weathers (skistation_id, temperature, wind_speed, snow, visibility, clouds, weather_main, weather_description, timestamp)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
-    """, (id, data['main']['temp'], data['wind']['speed'], snow, visibility, clouds, weather_main, weather_description, timestamp))
-
-conn.commit()
-conn.close()
+    # Insert the weather data into Supabase using supabase-py
+    supabase.table("weathers").insert({
+        "skistation_id": id,
+        "temperature": data['main']['temp'],
+        "wind_speed": data['wind']['speed'],
+        "snow": snow,
+        "visibility": visibility,
+        "clouds": clouds,
+        "weather_main": weather_main,
+        "weather_description": weather_description,
+        "timestamp": timestamp
+    }).execute()
