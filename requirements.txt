@@ -1,4 +1,4 @@
-Flask
+Flask==2.2.2
 apns2-client
 requests
 pandas
