@@ -27,9 +27,9 @@ for station in stations:
     timestamp = datetime.fromtimestamp(dt).strftime('%Y-%m-%d %H:%M:%S') if dt else None
 
     c.execute("""
-        INSERT INTO weathers (ski_station_id, temperature, wind_speed, snow, visibility, dt, clouds, weather_main, weather_description, timestamp)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-    """, (id, data['main']['temp'], data['wind']['speed'], snow, visibility, dt, clouds, weather_main, weather_description, timestamp))
+        INSERT INTO weathers (skistation_id, temperature, wind_speed, snow, visibility, clouds, weather_main, weather_description, timestamp)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+    """, (id, data['main']['temp'], data['wind']['speed'], snow, visibility, clouds, weather_main, weather_description, timestamp))
 
 conn.commit()
 conn.close()

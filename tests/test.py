@@ -4,11 +4,11 @@ import subprocess
 
 SCRIPT_PATHS = {
     'db': '../swisssnow.sqlite',
-    'schema': '../db/schema.sql',
+    'schema': '../db/schemas/schema.sql',
     'insert': './insert.sql',
-    'weather': '../src/weathers.py',
-    'view': '../db/view.sql',
-    'finder': '../src/finders.py'
+    'cumulative_snowfall': '../db/views/cumulative_snowfall.sql',
+    'regions_recommendations': '../db/views/regions_recommendations.sql',
+    'users_recommendations': '../db/views/users_recommendations.sql',
 }
 
 
@@ -51,20 +51,20 @@ else:
     print("Script aborted.")
     exit()
 
-if ask_continue("weather", SCRIPT_PATHS['weather']):
-    execute_python_file(SCRIPT_PATHS['weather'])
+if ask_continue("cumulative_snowfall", SCRIPT_PATHS['cumulative_snowfall']):
+    execute_sql_file(conn, SCRIPT_PATHS['cumulative_snowfall'])
 else:
     print("Script aborted.")
     exit()
 
-if ask_continue("view", SCRIPT_PATHS['view']):
-    execute_sql_file(conn, SCRIPT_PATHS['view'])
+if ask_continue("regions_recommendations", SCRIPT_PATHS['regions_recommendations']):
+    execute_sql_file(conn, SCRIPT_PATHS['regions_recommendations'])
 else:
     print("Script aborted.")
     exit()
 
-if ask_continue("finder", SCRIPT_PATHS['finder']):
-    execute_python_file(SCRIPT_PATHS['finder'])
+if ask_continue("users_recommendations", SCRIPT_PATHS['users_recommendations']):
+    execute_sql_file(conn, SCRIPT_PATHS['users_recommendations'])
 else:
     print("Script aborted.")
     exit()
