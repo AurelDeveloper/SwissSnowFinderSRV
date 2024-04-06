@@ -2,3 +2,4 @@ venv
 swisssnow.sqlite
 .idea
 .DS_Store
+.vercel
