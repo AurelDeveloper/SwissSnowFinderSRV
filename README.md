@@ -26,10 +26,22 @@ SwissSnowFinderSRV is your ultimate server script for discovering ski stations w
    ```bash
    git clone https://github.com/AurelDeveloper/SwissSnowFinderSRV.git
    ```
-
+   
 2. **Navigate to the Project Directory:**
    ```bash
    cd SwissSnowFinderSRV
+   ```
+   
+3. **Install the venv and the requirements**
+   ```bash
+   python3 -m venv venv
+   source venv/bin/activate
+   pip install -r requirements.txt
+   ```
+
+4. **Launch the test.py**
+   ```bash
+   python tests/test.py
    ```
 
 ### License
