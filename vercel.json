@@ -2,13 +2,16 @@
     "rewrites": [
         { "source": "/(.*)", "destination": "/api/index" }
     ],
-    "engines": {
-        "node": "18.x"
-    },
     "builds": [
         {
+            "src": "api/index.py",
             "use": "@vercel/python",
             "config": { "runtime": "python3.9" }
+        }
+    ],
+    "routes": [
+        {
+            "src": "/api/index", "dest": "/api/index.py"
         }
     ],
     "crons": [
