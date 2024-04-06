@@ -1,4 +1,7 @@
 venv
 .idea
 .DS_Store
-.vercel
+idea/
+.vscode/
+venv/
+.venv
