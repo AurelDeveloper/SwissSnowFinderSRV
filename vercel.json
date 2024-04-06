@@ -1,15 +1,11 @@
 {
-  "version": 2,
-  "builds": [
-    {
-      "src": "app.py",
-      "use": "@vercel/python"
-    }
-  ],
-  "crons": [
-    {
-      "path": "/api/run-script",
-      "schedule": "0 */4 * * *"
-    }
-  ]
+    "rewrites": [
+        { "source": "/(.*)", "destination": "/api/index" }
+    ],
+    "crons": [
+        {
+            "path": "/api/index",
+            "schedule": "0 */4 * * *"
+        }
+    ]
 }
