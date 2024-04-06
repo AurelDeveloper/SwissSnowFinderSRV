@@ -4,11 +4,11 @@ import subprocess
 
 SCRIPT_PATHS = {
     'db': '../swisssnow.sqlite',
-    'schema': '../db/schemas/schema.sql',
+    'schema': '../src/sql/schemas/schema.sql',
     'insert': './insert.sql',
-    'cumulative_snowfall': '../db/views/cumulative_snowfall.sql',
-    'regions_recommendations': '../db/views/regions_recommendations.sql',
-    'users_recommendations': '../db/views/users_recommendations.sql',
+    'cumulative_snowfall': '../src/sql/views/cumulative_snowfall.sql',
+    'regions_recommendations': '../src/sql/views/regions_recommendations.sql',
+    'users_recommendations': '../src/sql/views/users_recommendations.sql',
 }
 
 
