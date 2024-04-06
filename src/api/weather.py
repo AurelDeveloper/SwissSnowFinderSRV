@@ -1,18 +1,22 @@
+from dotenv import load_dotenv
+load_dotenv()
+
 import os
 import requests
-from supabase import create_client, Client
+from supabase import create_client
 from datetime import datetime
 
-url: str = os.environ.get("SUPABASE_URL")
-key: str = os.environ.get("SUPABASE_KEY")
-supabase: Client = create_client(url, key)
+url = os.environ.get("SUPABASE_URL")
+key = os.environ.get("SUPABASE_KEY")
+supabase = create_client(url, key)
 
 api_key = os.environ['OPENWEATHER_API_KEY']
 
 # Fetch the stations from Supabase using supabase-py
-stations = supabase.table("skistations").select("*").execute()
+response = supabase.table("skistations").select("*").execute()
+stations = response.data
 
-for station in stations['data']:
+for station in stations:
     id, name, region_id, lat, lon = station["id"], station["name"], station["region_id"], station["latitude"], station["longitude"]
 
     response = requests.get(f'https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={api_key}')
