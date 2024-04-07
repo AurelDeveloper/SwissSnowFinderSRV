@@ -1,4 +1,5 @@
 Flask==2.2.2
+Werkzeug==1.0.1
 apns2-client
 requests
 pandas
