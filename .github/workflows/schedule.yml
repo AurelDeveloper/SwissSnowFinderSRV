@@ -1,4 +1,4 @@
-name: Run Python script every two hours
+name: Cron Job - Run Python script
 
 on:
   schedule:
