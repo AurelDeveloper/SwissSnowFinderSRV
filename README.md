@@ -23,21 +23,32 @@ Connects the region that the user has chosen with the best ski station for this 
 ## Tables
 
 - ### user_preferences
-  ```sql
-  -- PostgreSQL schema for users table
-CREATE TABLE users (
-    user_id INT PRIMARY KEY,
-    username TEXT,
-    email TEXT
-);
-'''
-
+``` sql
+function test() {
+  console.log("notice the blank line before this function?");
+}
+```
 
 - ### users
+``` sql
+function test() {
+  console.log("notice the blank line before this function?");
+}
+```
 
 - ### weathers
+``` sql
+function test() {
+  console.log("notice the blank line before this function?");
+}
+```
 
 - ### skistations
+``` sql
+function test() {
+  console.log("notice the blank line before this function?");
+}
+```
 
 - ### Create Table: `regions`
 ``` sql
