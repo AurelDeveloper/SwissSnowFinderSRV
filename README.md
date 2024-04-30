@@ -103,7 +103,7 @@ create table
 
 **Server:** Supabase, GitHub Actions, OpenWeather API
 
-## Roadmap
+## TODO
 
 - Import the list of all ski stations in Switzerland with their coordinates and regions.
 - Import the list of all regions (cantons) in Switzerland.
