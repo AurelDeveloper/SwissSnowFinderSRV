@@ -24,37 +24,79 @@ Connects the region that the user has chosen with the best ski station for this 
 
 - ### `user_preferences`
 ``` sql
-function test() {
-  console.log("notice the blank line before this function?");
-}
+create table
+  public.users_preferences (
+    id serial,
+    user_id uuid not null,
+    region_id integer not null,
+    constraint users_preferences_pkey primary key (id),
+    constraint users_preferences_region_id_fkey foreign key (region_id) references regions (id),
+    constraint users_preferences_user_id_fkey foreign key (user_id) references users (id)
+  ) tablespace pg_default;
 ```
 
 - ### `users`
 ``` sql
-function test() {
-  console.log("notice the blank line before this function?");
-}
+create table
+  public.users (
+    id uuid not null default gen_random_uuid (),
+    aud text null,
+    role text null,
+    email text null,
+    confirmed_at timestamp with time zone null,
+    last_sign_in_at timestamp with time zone null,
+    app_metadata jsonb null,
+    user_metadata jsonb null,
+    created_at timestamp with time zone null default now(),
+    updated_at timestamp with time zone null default now(),
+    constraint users_pkey primary key (id),
+    constraint users_aud_check check ((char_length(aud) > 0)),
+    constraint users_email_check check ((char_length(email) > 0)),
+    constraint users_role_check check ((char_length(role) > 0))
+  ) tablespace pg_default;
 ```
 
 - ### `weathers`
 ``` sql
-function test() {
-  console.log("notice the blank line before this function?");
-}
+create table
+  public.weathers (
+    id serial,
+    skistation_id integer not null,
+    temperature numeric(5, 2) null,
+    wind_speed numeric(5, 2) null,
+    snow numeric(5, 2) null,
+    timestamp timestamp without time zone not null,
+    visibility integer null,
+    clouds integer null,
+    weather_main text null,
+    weather_description text null,
+    constraint weathers_pkey primary key (id),
+    constraint weathers_skistation_id_fkey foreign key (skistation_id) references skistations (id)
+  ) tablespace pg_default;
 ```
 
 - ### `skistations`
 ``` sql
-function test() {
-  console.log("notice the blank line before this function?");
-}
+create table
+  public.skistations (
+    id serial,
+    name text not null,
+    region_id integer not null,
+    latitude real not null,
+    longitude real not null,
+    constraint skistations_pkey primary key (id),
+    constraint skistations_region_id_fkey foreign key (region_id) references regions (id)
+  ) tablespace pg_default;
 ```
 
 - ### `regions`
 ``` sql
-function test() {
-  console.log("notice the blank line before this function?");
-}
+create table
+  public.regions (
+    id serial,
+    name text not null,
+    constraint regions_pkey primary key (id)
+  ) tablespace pg_default;
 ```
   
 
