@@ -22,10 +22,9 @@ Connects the region that the user has chosen with the best ski station for this 
 
 ### Tables
 
-- ### user_preferences
+- #### user_preferences
 
-- `users`
-  ![users](path_to_users_image.jpg)
+- #### user
 
 - `weathers`
   ![weathers](path_to_weathers_image.jpg)
