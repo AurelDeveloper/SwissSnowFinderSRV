@@ -38,7 +38,7 @@ Connects the region that the user has chosen with the best ski station for this 
   ![ski_stations](path_to_ski_stations_image.jpg)
 
 - `regions`
-  ![regions](path_to_regions_image.jpg)
+  ![regions](file:///var/folders/8l/ns5tw8s54nj4cb13cx6d_0z00000gn/T/TemporaryItems/NSIRD_screencaptureui_ZGLRkJ/Screenshot%202024-04-30%20at%2022.52.46.png)
 
 - `skistations`
   ![skistations](path_to_skistations_image.jpg)
