@@ -9,15 +9,12 @@ It's a server script for an app that finds the ski station with the best snow in
 ## Views
 
 #### cumulative_snowfall
-![cumulative_snowfall](path_to_cumulative_snowfall_image.jpg)
 Generates a summary of the snowfall from the last 12 hours, last day, and last 3 days.
 
 #### regions_recommendations
-![regions_recommendations](path_to_regions_recommendations_image.jpg)
 Finds the best ski station for every region in Switzerland.
 
 #### users_recommendations
-![users_recommendations](path_to_users_recommendations_image.jpg)
 Connects the region that the user has chosen with the best ski station for this region.
 
 ## Tables
