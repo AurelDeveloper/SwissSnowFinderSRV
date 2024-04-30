@@ -107,3 +107,4 @@ create table
 - Import the list of all regions (cantons) in Switzerland.
 - Create the app.
 - Create the user backend.
+- Setup github actions to run the `weathers.py`.
