@@ -23,6 +23,13 @@ Connects the region that the user has chosen with the best ski station for this 
 ## Tables
 
 - ### user_preferences
+  -- PostgreSQL schema for users table
+CREATE TABLE users (
+    user_id INT PRIMARY KEY,
+    username TEXT,
+    email TEXT
+);
+
 
 - ### users
 
