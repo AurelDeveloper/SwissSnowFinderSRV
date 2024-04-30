@@ -2,6 +2,8 @@
 
 It's a server script for an app that finds the ski station with the best snow in Switzerland.
 
+**Note**: I won't continue developing this project for the moment as summer approaches, and it's not good to conduct tests.
+
 ## Functions
 
 - **weather.py:** Fetches the list of all ski stations in Switzerland. The list is stored in a Postgres table in the Supabase database. It runs on GitHub Actions.
