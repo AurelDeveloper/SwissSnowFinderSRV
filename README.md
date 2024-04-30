@@ -1,4 +1,4 @@
-# Project Title
+# SwissSnowFinder
 
 It's a server script for an app that finds the ski station with the best snow in Switzerland.
 
