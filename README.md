@@ -12,9 +12,12 @@ It's a server script for an app that finds the ski station with the best snow in
 
 - **VIEW:** `users_recommendations` connects the region that the user has chosen with the best ski station for this region.
 
-- **TABLES:** `users_preferences`, `users`, `weathers`, `ski_stations`, `regions`
+- **TABLES:** `users_preferences`, `users`, `weathers`, `ski_stations`,
 
-`regions` ![Screenshot 2024-04-30 at 22 47 25](https://github.com/AurelDeveloper/SwissSnowFinderSRV/assets/150530607/48ffe3be-ff36-4b3f-8f9d-4fbb9d0d4174)
+`regions`
+![Screenshot 2024-04-30 at 22 47 25](https://github.com/AurelDeveloper/SwissSnowFinderSRV/assets/150530607/48ffe3be-ff36-4b3f-8f9d-4fbb9d0d4174)
+
+`skistations`
 
 ## Tech Stack
 
