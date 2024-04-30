@@ -38,8 +38,8 @@ Connects the region that the user has chosen with the best ski station for this 
   ![ski_stations](path_to_ski_stations_image.jpg)
 
 - `regions`
-  ![regions](file:///var/folders/8l/ns5tw8s54nj4cb13cx6d_0z00000gn/T/TemporaryItems/NSIRD_screencaptureui_ZGLRkJ/Screenshot%202024-04-30%20at%2022.52.46.png)
-
+  ![regions](![Screenshot 2024-04-30 at 22 53 39](https://github.com/AurelDeveloper/SwissSnowFinderSRV/assets/150530607/c8fc8d23-d51b-4204-a0d9-98954e787e77)
+  
 - `skistations`
   ![skistations](path_to_skistations_image.jpg)
 
