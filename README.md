@@ -22,35 +22,35 @@ Connects the region that the user has chosen with the best ski station for this 
 
 ## Tables
 
-- ### user_preferences
+- ### `user_preferences`
 ``` sql
 function test() {
   console.log("notice the blank line before this function?");
 }
 ```
 
-- ### users
+- ### `users`
 ``` sql
 function test() {
   console.log("notice the blank line before this function?");
 }
 ```
 
-- ### weathers
+- ### `weathers`
 ``` sql
 function test() {
   console.log("notice the blank line before this function?");
 }
 ```
 
-- ### skistations
+- ### `skistations`
 ``` sql
 function test() {
   console.log("notice the blank line before this function?");
 }
 ```
 
-- ### Create Table: `regions`
+- ### `regions`
 ``` sql
 function test() {
   console.log("notice the blank line before this function?");
