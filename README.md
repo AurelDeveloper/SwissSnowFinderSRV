@@ -9,19 +9,16 @@ It's a server script for an app that finds the ski station with the best snow in
 ### Views
 
 #### cumulative_snowfall
+![cumulative_snowfall](path_to_cumulative_snowfall_image.jpg)
 Generates a summary of the snowfall from the last 12 hours, last day, and last 3 days.
 
-![cumulative_snowfall](path_to_cumulative_snowfall_image.jpg)
-
 #### regions_recommendations
+![regions_recommendations](path_to_regions_recommendations_image.jpg)
 Finds the best ski station for every region in Switzerland.
 
-![regions_recommendations](path_to_regions_recommendations_image.jpg)
-
 #### users_recommendations
-Connects the region that the user has chosen with the best ski station for this region.
-
 ![users_recommendations](path_to_users_recommendations_image.jpg)
+Connects the region that the user has chosen with the best ski station for this region.
 
 ### Tables
 
@@ -38,7 +35,7 @@ Connects the region that the user has chosen with the best ski station for this 
   ![ski_stations](path_to_ski_stations_image.jpg)
 
 - `regions`
-  ![Screenshot 2024-04-30 at 22 53 39](https://github.com/AurelDeveloper/SwissSnowFinderSRV/assets/150530607/1f433167-fadb-4d4d-bce3-e4461eb58b2e)
+  ![regions](path_to_regions_image.jpg)
 
 - `skistations`
   ![skistations](path_to_skistations_image.jpg)
