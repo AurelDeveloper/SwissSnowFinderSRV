@@ -14,6 +14,8 @@ It's a server script for an app that finds the ski station with the best snow in
 
 - **TABLES:** `users_preferences`, `users`, `weathers`, `ski_stations`, `regions`
 
+`regions` ![Screenshot 2024-04-30 at 22 47 25](https://github.com/AurelDeveloper/SwissSnowFinderSRV/assets/150530607/48ffe3be-ff36-4b3f-8f9d-4fbb9d0d4174)
+
 ## Tech Stack
 
 **Server:** Supabase, GitHub Actions, OpenWeather API
