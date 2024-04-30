@@ -30,6 +30,7 @@ CREATE TABLE users (
     username TEXT,
     email TEXT
 );
+'''
 
 
 - ### users
@@ -38,7 +39,12 @@ CREATE TABLE users (
 
 - ### skistations
 
-- ### regions
+- ### Create Table: `regions`
+``` sql
+function test() {
+  console.log("notice the blank line before this function?");
+}
+```
   
 
 ## Tech Stack
