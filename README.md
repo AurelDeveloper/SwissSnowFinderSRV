@@ -107,6 +107,6 @@ create table
 
 - Import the list of all ski stations in Switzerland with their coordinates and regions.
 - Import the list of all regions (cantons) in Switzerland.
+- Setup github actions to run the `weathers.py`.
 - Create the app.
 - Create the user backend.
-- Setup github actions to run the `weathers.py`.
