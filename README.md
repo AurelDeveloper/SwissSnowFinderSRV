@@ -2,7 +2,7 @@
 
 It's a server script for an app that finds the ski station with the best snow in Switzerland.
 
-**Note**: I won't continue developing this project for the moment because I don't have the competence to develop an iOS app.
+**Note**: I'm on the developing from the app.
 
 ## Functions
 
