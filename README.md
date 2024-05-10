@@ -4,6 +4,8 @@ It's a server script for an app that finds the ski station with the best snow in
 
 **Note**: I'm on the developing from the app.
 
+![weather py script](https://github.com/AurelDeveloper/SwissSnowFinderSRV/assets/150530607/d092041e-de4a-4ce3-9cd0-18a0f3ce82e5)
+
 ## Functions
 
 - **weather.py:** Fetches the list of all ski stations in Switzerland. The list is stored in a Postgres table in the Supabase database. It runs on GitHub Actions.
